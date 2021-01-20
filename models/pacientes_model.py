@@ -42,12 +42,6 @@ class pacientes_app(models.Model):
         fechanow = date.today()
         if int(fechanow.year - self.fechanacim.year) <18:
             raise ValidationError("Debe ser mayor de edad")
-        elif int(fechanow.month - self.fechanacim.month) <0:
-            raise ValidationError("Debe ser mayor de edad")
-        elif int(fechanow.day - self.fechanacim.day) <0:
-            raise ValidationError("Debe ser mayor de edad")
-        else:
-            return True
 
     @api.constrains("email")
     def _correoValido(self):
@@ -57,5 +51,8 @@ class pacientes_app(models.Model):
     @api.depends("visitas")
     def _getNumpaci(self):
         self.numvisitas = len(self.visitas)
+
+    def eliminaTareas(self):
+        self.visitas.unlink()
 
 

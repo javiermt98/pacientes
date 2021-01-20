@@ -6,21 +6,23 @@
       <field name="model">pacientes_app.pacientes_model</field>
       <field name="arch" type="xml">
         <form string="Nuevo Paciente">
-          <header></header>
+          <header>
+            <button name="eliminaTareas" type="object" string="Eliminar Historial de Pacientes" confirm="¿Estás seguro de eliminar el historial?"></button>
+          </header>
           <sheet>
             <notebook>
               <page string="Datos Paciente">
+                <widget name = "web_ribbon" text = "Paciente" bg_color = "bg-danger" />
                 <group>
-                  
                   <group id="grupoizq">
                   <h1>Datos Personales</h1>
                   <label for="dni" class="oe_edit_only" />
                   <h1>
-                    <field name="dni" />
+                    <field name="dni"/>
                   </h1>
                   <field name="name" />
                   <field name="apellidos" />
-                  <field name="telf" />
+                  <field name="telf" widget="phone" />
                   <field name="email" widget="email" />
                   <field name="fechanacim" />
                   <field name="numvisitas" />
@@ -47,14 +49,13 @@
       <field name="arch" type="xml">
 
         <tree>
-            <field name="dni" />
+            
+            <field name="dni"  widget="handle"/>
             <field name="name" />
             <field name="apellidos" />
             <field name="telf" />
-            <field name="email" />
-            <field name="fechanacim" />
-
-          
+            <field name="email" widget="email"/>
+            <field name="fechanacim" widget="date"/>
         </tree>
       </field>
     </record>
